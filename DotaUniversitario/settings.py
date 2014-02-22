@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'DotaUniversitario.wsgi.application'
 
 TEMPLATE_DIRS = (
     'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/DotaUniversitario/templates',
-    os.path.join(BASE_DIR, "DotaUniversitario/templates"),
+    os.path.join(BASE_DIR, "templates"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
