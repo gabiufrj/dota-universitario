@@ -1,7 +1,11 @@
 Django==1.4.3
 dj-database-url==0.2.2
 dj-static==0.0.5
+django-toolbelt==0.0.1
 gunicorn==18.0
-psycopg2==2.5.1
-static==0.4
-wsgiref==0.1.2
+pdfminer==20110515
+psycopg2==2.4.6
+pystache==0.5.3
+pywin32==218
+static==1.0.2
+virtualenv==1.11.4
