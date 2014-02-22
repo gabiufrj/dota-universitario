@@ -1,1 +1,1 @@
-web: gunicorn DotaUniversitario.wsgi
+web: python manage.py collectstatic --noinput ; gunicorn DotaUniversitario.wsgi
