@@ -56,15 +56,20 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = 'staticfiles'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
 # Additional locations of static files
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 STATICFILES_DIRS = (
     'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/static',
+    os.path.join(BASE_DIR, 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -105,6 +110,7 @@ WSGI_APPLICATION = 'DotaUniversitario.wsgi.application'
 
 TEMPLATE_DIRS = (
     'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/DotaUniversitario/templates',
+    os.path.join(BASE_DIR, "DotaUniversitario/templates"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -161,13 +167,3 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-
-# Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
