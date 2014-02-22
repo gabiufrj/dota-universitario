@@ -5,7 +5,5 @@ django-toolbelt==0.0.1
 gunicorn==18.0
 pdfminer==20110515
 psycopg2==2.4.6
-pystache==0.5.3
-pywin32==218
 static==1.0.2
 virtualenv==1.11.4
