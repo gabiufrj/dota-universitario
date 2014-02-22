@@ -68,7 +68,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = (
-    'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/DotaUniversitario/static',
     os.path.join(BASE_DIR, 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
