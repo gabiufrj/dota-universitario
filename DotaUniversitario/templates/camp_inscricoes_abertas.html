@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Campeonatos com inscrições abertas</h2>
+        </div>
+        <p>Clique em um campeonato para obter mais informações.</p>
+        <div style="width:100%">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Universidade</th>
+                    <th>Inscritos/Vagas</th>
+                    <th>Término das inscrições</th>
+                    <th>Início das partidas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">Campeonato 1</a></td>
+                        <td>UFRJ</td>
+                        <td>8/16</td>
+                        <td>31/03/2014</td>
+                        <td>01/04/2014</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato 2</a></td>
+                        <td>UFRJ</td>
+                        <td>8/16</td>
+                        <td>31/03/2014</td>
+                        <td>01/04/2014</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato 3</a></td>
+                        <td>UFRJ</td>
+                        <td>8/16</td>
+                        <td>31/03/2014</td>
+                        <td>01/04/2014</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="text-center">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    {% endblock %}

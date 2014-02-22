@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Dota 2 Universitário</title>
+    <!-- Bootstrap -->
+    {% load staticfiles %}
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body role="document" style="padding-top: 70px;padding-bottom: 50px">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Dota 2 Universitário</a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/sobre/">Sobre</a></li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Copa Minerva <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Edições realizadas</li>
+                            <li><a href="/copa-minerva/1/">Primeira</a></li>
+                            <li><a href="/copa-minerva/2/">Segunda</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Edições futuras</li>
+                            <li><a href="#">Terceira</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ligas <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">UFRJ</a></li>
+                            <li><a href="#">UFMG</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Cadastre sua liga!</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Campeonatos <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/campeonatos/todos/">Todos</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/campeonatos/andamento/">Em andamento</a></li>
+                            <li><a href="/campeonatos/inscricoes-abertas/">Inscrições abertas</a></li>
+                            <li><a href="/campeonatos/terminados/">Terminados</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/campeonatos/crie-o-seu/">Crie o seu campeonato!</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+                </ul>
+            </div>            
+		</div>
+	</div>
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <hr>
+    <p>Gabriel Pires da Silva</p>
+    {% endblock %}
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+</body>
+</html>
