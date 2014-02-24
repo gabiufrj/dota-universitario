@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Liga {{ liga.nome }}</h2>
+        </div>
+        <p>{{ liga.descricao }}</p>
+        
+        <div class="page-header">
+            <h3>Ficha técnica</h3>
+        </div>
+        <table class="table" style="width:40%">
+            <tbody>
+                <tr>
+                    <th>Sigla</th>
+                    <td>{{ liga.universidade.sigla }}</td>
+                </tr>
+                <tr>
+                    <th>Administrador</th>
+                    <td>{{ liga.administrador }}</td>
+                </tr>
+                <tr>
+                    <th>Data de criação</th>
+                    <td>{{ liga.data_criacao|date:"d/m/Y" }}</td>
+                </tr>
+                <tr>
+                    <th># Campeonatos</th>
+                    <td>{{ liga_campeonatos }}</td>
+                </tr>
+                <tr>
+                    <th>Campeonatos em andamento</th>
+                    {% if campeonatos_andamento|length > 0 %}
+                    <td>Sim</td>
+                    {% else %}
+                    <td>Não</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>Campeonatos agendados</th>
+                    {% if campeonatos_agendados|length > 0 %}
+                    <td>Sim</td>
+                    {% else %}
+                    <td>Não</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- campeonatos em andamento -->
+        <div class="page-header">
+            <h3>Campeonatos em andamento</h3>
+        </div>
+        {% if campeonatos_andamento|length > 0 %}
+            <div style="width:100%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Nome</th>
+                        <th>Início partidas</th>
+                        <th>Término das partidas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for campeonato in campeonatos_andamento %}
+                            <tr>
+                                <td><a href="/campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                                <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                                <td>{{ campeonato.fim_partidas|date:"d/m/Y" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <small><i>Nenhum campeonato em andamento.</i></small>
+        {% endif %}
+        <!-- fim campeonatos em andamento -->
+        
+        <!-- campeonatos agendados -->
+        <div class="page-header">
+            <h3>Campeonatos agendados</h3>
+        </div>
+        {% if campeonatos_agendados|length > 0 %}
+            <div style="width:100%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Nome</th>
+                        <th>Início das inscrições</th>
+                        <th>Término das inscrições</th>
+                        <th>Começo das partidas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for campeonato in campeonatos_agendados %}
+                            <tr>
+                                <td><a href="campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                                <td>{{ campeonato.inicio_inscricoes|date:"d/m/Y" }}</td>
+                                <td>{{ campeonato.fim_inscricoes|date:"d/m/Y" }}</td>
+                                <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <small><i>Nenhum campeonato agendado.</i></small>
+        {% endif %}
+        <!-- fim campeonatos agendados -->
+        
+        <div class="page-header">
+            <h3>Campeonatos passados</h3>
+        </div>
+        {% if campeonatos_passados|length > 0 %}
+            <div style="width:100%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Nome</th>
+                        <th>Data de início</th>
+                        <th>Data de término</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for campeonato in campeonatos_terminados %}
+                            <tr>
+                                <td><a href="/campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                                <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                                <td>{{ campeonato.fim_partidas|date:"d/m/Y" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <small><i>Nenhum campeonato concluído.</i></small>
+        {% endif %}
+        
+        <div class="page-header">
+            <h3>Times da universidade</h3>
+        </div>
+        <div>
+            {% if lista_times|length > 0 %}
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for time in lista_times %}
+                    <tr>
+                        <td><a href="/times/{{time.id}}">{{ time.nome }}</a></td>
+                        <td>{{ time.sigla }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <small><i>Nenhum time filiado à instituição.</i></small>
+            {% endif %}
+        </div>
+    </div> <!-- /container -->
+    {% endblock%}

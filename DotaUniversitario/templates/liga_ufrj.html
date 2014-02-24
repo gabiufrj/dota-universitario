@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Liga UFRJ</h2>
+        </div>
+        <p>Liga da Universidade Federal do Rio de Janeiro. Essa liga foi criada em 1857, sendo a primeira liga universitária brasileira de Dota 2</p>
+        
+        <div class="page-header">
+            <h3>Ficha técnica</h3>
+        </div>
+        <table class="table" style="width:40%">
+            <tbody>
+                <tr>
+                    <th>Sigla</th>
+                    <td>UFRJ</td>
+                </tr>
+                <tr>
+                    <th>Administrador</th>
+                    <td>alguém</td>
+                </tr>
+                <tr>
+                    <th>Data de criação</th>
+                    <td>05/04/1857</td>
+                </tr>
+                <tr>
+                    <th># Campeonatos</th>
+                    <td>27</td>
+                </tr>
+                <tr>
+                    <th>Campeonatos em andamento</th>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <th>Campeonatos agendados</th>
+                    <td>Sim</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="page-header">
+            <h3>Campeonatos em andamento</h3>
+        </div>
+        <small><i>Nenhum campeonato em andamento</i></small>
+        
+        <div class="page-header">
+            <h3>Campeonatos agendados</h3>
+        </div>
+        <div style="width:100%">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Inscritos/Vagas</th>
+                    <th>Inscrições abertas</th>
+                    <th>Início das inscrições</th>
+                    <th>Término das inscrições</th>
+                    <th>Começo das partidas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">Campeonato futuro 1</a></td>
+                        <td>8/16</td>
+                        <td>Sim</td>
+                        <td>22/02/2014</td>
+                        <td>07/04/2014</td>
+                        <td>09/04/2014</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato futuro 2</a></td>
+                        <td>1/32</td>
+                        <td>Sim</td>
+                        <td>22/02/2014</td>
+                        <td>28/06/2014</td>
+                        <td>11/07/2014</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato futuro 3</a></td>
+                        <td>0/32</td>
+                        <td>Não</td>
+                        <td>28/10/2014</td>
+                        <td>28/11/2014</td>
+                        <td>04/12/2014</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="page-header">
+            <h3>Campeonatos passados</h3>
+        </div>
+        <div style="width:100%">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th># Participantes</th>
+                    <th>Data de término</th>
+                    <th>Campeões</th>
+                    <th>Vice-campeões</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">Campeonato 3</a></td>
+                        <td>16</td>
+                        <td>31/03/2014</td>
+                        <td>Campiones</td>
+                        <td>Vasco</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato 2</a></td>
+                        <td>10</td>
+                        <td>12/08/2013</td>
+                        <td>Champions</td>
+                        <td>Vasco</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Campeonato 1</a></td>
+                        <td>8</td>
+                        <td>01/01/2013</td>
+                        <td>Campeões</td>
+                        <td>Vasco</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="text-center">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    {% endblock%}

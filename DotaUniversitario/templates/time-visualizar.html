@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>{{ time.nome }}</h2>
+        </div>
+        
+        <h3>Resumo</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Sigla</th>
+                    <td>{{ time.sigla }}</td>
+                </tr>
+                <tr>
+                    <th>Universidade</th>
+                    <td>{{ time.universidade.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Capitão</th>
+                    <td>{{ campeonato.capitao }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br />
+        <h3>Estatísticas</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Partidas disputadas</th>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <th>Vitórias</th>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <th>Títulos</th>
+                    <td>2</td>
+                </tr>  
+            </tbody>
+        </table>
+    </div> <!-- end content -->
+    {% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Notícias</h2>
+        </div>
+        <p>Clique em uma notícia para ler mais.</p>
+        <div style="width:100%">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Data de criação</th>
+                        <th>Última alteração</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for noticia in lista_noticias %}
+                        <tr>
+                            <td><a href="/noticias/{{noticia.id}}">{{ noticia.titulo }}</a></td>
+                            <td>{{ noticia.data_criacao|date:"d/m/Y" }}</td>
+                            <td>{{ noticia.data_editado|date:"d/m/Y" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="text-center" style="display:none">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    {% endblock %}

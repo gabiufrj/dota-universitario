@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+    {% block content %}    
+    <div class="container">
+        <div class="page-header">
+            <h2>{{ noticia_titulo }}</h2>
+            <small style="color: #bbb">{{ noticia_autor }}, em {{ noticia_criacao }}</small>
+        </div>
+        <p>{{ noticia_conteudo }}</p>
+    </div> <!-- /container -->
+    {% endblock %}

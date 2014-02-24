@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Campeonatos terminados</h2>
+        </div>
+        {% if lista_campeonatos|length > 0 %}
+        <p>Clique em um campeonato para obter mais informações.</p>
+        <div style="width:100%">            
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Universidade</th>
+                    <th># Inscritos</th>
+                    <th>Início das partidas</th>
+                    <th>Fim das partidas</th>
+                    <th>Campeões</th>
+                    <th>Vice-campeões</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campeonato in lista_campeonatos %}
+                        <tr>
+                            <td><a href="/campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                            <td>{{ campeonato.universidade }}</td>
+                            <td>8</td>
+                            <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                            <td>{{ campeonato.fim_partidas|date:"d/m/Y" }}</td>
+                            <td>{{ campeonato.campeao }}</td>
+                            <td>{{ campeonato.vicecampeao }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p><i>Nenhum campeonato foi realizado ainda.</i></p>
+        {% endif %}
+        
+        <br />
+        <small><i>Campeonatos terminados e com menos de 2 times inscritos serão deletados do banco.</i></small>
+    </div> <!-- /container -->
+    {% endblock %}

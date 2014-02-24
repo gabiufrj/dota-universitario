@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Campeonatos em andamento</h2>
+        </div>
+        {% if lista_campeonatos|length > 0 %}
+        <p>Clique em um campeonato para obter mais informações.</p>
+        <div style="width:100%">            
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Universidade</th>
+                    <th># Inscritos</th>
+                    <th>Início das partidas</th>
+                    <th>Fim das partidas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campeonato in lista_campeonatos %}
+                        <tr>
+                            <td><a href="/campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                            <td>{{ campeonato.universidade }}</td>
+                            <td>8</td>
+                            <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                            {% if campeonato.fim_partidas %}
+                                <td>{{ campeonato.fim_partidas|date:"d/m/Y" }}</td>
+                            {% else %}
+                                <td><i>Não definido</i></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p><i>Nenhum campeonato em andamento</i></p>
+        {% endif %}
+    </div> <!-- /container -->
+    {% endblock %}

@@ -1,0 +1,102 @@
+2014-02-22T06:55:27.064839+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/wsgi.py", line 241, in __call__
+2014-02-22T06:55:27.065118+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/base.py", line 224, in handle_uncaught_exception
+2014-02-22T06:55:27.065118+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/urlresolvers.py", line 323, in urlconf_module
+2014-02-22T06:55:27.064839+00:00 app[web.1]:   File "/app/.heroku/src/dj-static/dj_static.py", line 75, in __call__
+2014-02-22T06:55:27.064839+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/base.py", line 179, in get_response
+2014-02-22T06:55:27.064839+00:00 app[web.1]:     response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+2014-02-22T06:55:27.065118+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/utils/importlib.py", line 35, in import_module
+2014-02-22T06:55:27.064839+00:00 app[web.1]:     response = self.get_response(request)
+2014-02-22T06:55:27.065118+00:00 app[web.1]:     if resolver.urlconf_module is None:
+2014-02-22T06:55:27.065118+00:00 app[web.1]:     __import__(name)
+2014-02-22T06:55:27.065118+00:00 app[web.1]:     self._urlconf_module = import_module(self.urlconf_name)
+2014-02-22T06:55:27.065118+00:00 app[web.1]:   File "/app/DotaUniversitario/urls.py", line 30, in <module>
+2014-02-22T06:55:27.065118+00:00 app[web.1]:     if not settings.DEBUG:
+2014-02-22T06:55:27.065118+00:00 app[web.1]: NameError: name 'settings' is not defined
+2014-02-22T06:55:27.067936+00:00 heroku[router]: at=info method=GET path=/ host=dota-universitario.herokuapp.com request_id=8
+cc35268-5920-4513-82b4-0a9cbbbf6cec fwd="177.142.62.229" dyno=web.1 connect=0ms service=207ms status=500 bytes=238
+2014-02-22T06:56:29+00:00 heroku[slug-compiler]: Slug compilation started
+2014-02-22T06:56:46.778421+00:00 heroku[api]: Deploy cadf644 by gabpires21@gmail.com
+2014-02-22T06:56:46.778421+00:00 heroku[api]: Release v16 created by gabpires21@gmail.com
+2014-02-22T06:56:46.901951+00:00 heroku[web.1]: State changed from up to starting
+2014-02-22T06:56:46+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-02-22T06:56:49.292453+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-02-22T06:56:49.794781+00:00 app[web.1]: 2014-02-22 00:56:49 [9] [INFO] Worker exiting (pid: 9)
+2014-02-22T06:56:50.744493+00:00 heroku[web.1]: Starting process with command `python manage.py collectstatic --noinput ; gunicorn DotaUniversitario.wsgi`
+2014-02-22T06:56:50.956482+00:00 heroku[web.1]: Process exited with status 143
+2014-02-22T06:56:51.501164+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-22T06:56:51.501164+00:00 app[web.1]:   File "manage.py", line 10, in <module>
+2014-02-22T06:56:51.501164+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+2014-02-22T06:56:51.501164+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/management/__init__.py", line 382, in execute
+2014-02-22T06:56:51.501164+00:00 app[web.1]:     execute_from_command_line(sys.argv)
+2014-02-22T06:56:51.501164+00:00 app[web.1]:     utility.execute()
+2014-02-22T06:56:51.501164+00:00 app[web.1]:     self.fetch_command(subcommand).run_from_argv(self.argv)
+2014-02-22T06:56:51.501164+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/management/base.py", line 196, in run_from_argv
+2014-02-22T06:56:51.501164+00:00 app[web.1]:     self.execute(*args, **options.__dict__)
+2014-02-22T06:56:51.501164+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/management/base.py", line 232, in execute
+2014-02-22T06:56:51.501423+00:00 app[web.1]:     return self.handle_noargs(**options)
+2014-02-22T06:56:51.501423+00:00 app[web.1]:     for path, storage in finder.list(self.ignore_patterns):
+2014-02-22T06:56:51.501423+00:00 app[web.1]:     output = self.handle(*args, **options)
+2014-02-22T06:56:51.501423+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/staticfiles/management/commands/collectstatic.py", line 104, in collect
+2014-02-22T06:56:51.501423+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/management/base.py", line 371, in handle
+2014-02-22T06:56:51.501423+00:00 app[web.1]:     collected = self.collect()
+2014-02-22T06:56:51.501423+00:00 app[web.1]:     for path in utils.get_files(storage, ignore_patterns):
+2014-02-22T06:56:51.501423+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/staticfiles/management/commands/collectstatic.py", line 163, in handle_noargs
+2014-02-22T06:56:51.501423+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/staticfiles/utils.py", line 25, in get_files
+2014-02-22T06:56:51.501423+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/staticfiles/finders.py", line 105, in list
+2014-02-22T06:56:51.501897+00:00 app[web.1]:     directories, files = storage.listdir(location)
+2014-02-22T06:56:51.710073+00:00 app[web.1]: 2014-02-22 06:56:51 [4] [INFO] Listening at: http://0.0.0.0:16812 (4)
+2014-02-22T06:56:51.501897+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/files/storage.py", line 235, in listdir
+2014-02-22T06:56:51.501897+00:00 app[web.1]:     for entry in os.listdir(path):
+2014-02-22T06:56:51.710174+00:00 app[web.1]: 2014-02-22 06:56:51 [4] [INFO] Using worker: sync
+2014-02-22T06:56:51.501897+00:00 app[web.1]: OSError: [Errno 2] No such file or directory: '/app/DotaUniversitario/static'
+2014-02-22T06:56:51.709375+00:00 app[web.1]: 2014-02-22 06:56:51 [4] [INFO] Starting gunicorn 18.0
+2014-02-22T06:56:51.716412+00:00 app[web.1]: 2014-02-22 06:56:51 [9] [INFO] Booting worker with pid: 9
+2014-02-22T06:56:51.954028+00:00 heroku[web.1]: State changed from starting to up
+2014-02-22T06:58:09.423349+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-02-22T06:58:09.423349+00:00 app[web.1]:     return self.application(environ, start_response)
+2014-02-22T06:58:09.423349+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/wsgi.py", line 241, in __call__
+2014-02-22T06:58:09.423349+00:00 app[web.1]:     response = self.get_response(request)
+2014-02-22T06:58:09.423349+00:00 app[web.1]: 2014-02-22 00:58:09 [9] [ERROR] Error handling request
+2014-02-22T06:58:09.423628+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/base.py", line 224, in handle_uncaught_exception
+2014-02-22T06:58:09.423628+00:00 app[web.1]:   File "/app/DotaUniversitario/urls.py", line 30, in <module>
+2014-02-22T06:58:09.423349+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-22T06:58:09.423349+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-02-22T06:58:09.423628+00:00 app[web.1]: NameError: name 'settings' is not defined
+2014-02-22T06:58:09.423628+00:00 app[web.1]:     self._urlconf_module = import_module(self.urlconf_name)
+2014-02-22T06:58:09.423349+00:00 app[web.1]:   File "/app/.heroku/src/dj-static/dj_static.py", line 75, in __call__
+2014-02-22T06:58:09.423349+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/handlers/base.py", line 179, in get_response
+2014-02-22T06:58:09.423349+00:00 app[web.1]:     response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+2014-02-22T06:58:09.423628+00:00 app[web.1]:     if not settings.DEBUG:
+2014-02-22T06:58:09.423628+00:00 app[web.1]:     if resolver.urlconf_module is None:
+2014-02-22T06:58:09.423628+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/urlresolvers.py", line 323, in urlconf_module
+2014-02-22T06:58:09.423628+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/utils/importlib.py", line 35, in import_module
+2014-02-22T06:58:09.423628+00:00 app[web.1]:     __import__(name)
+2014-02-22T06:58:09.482675+00:00 heroku[router]: at=info method=GET path=/ host=dota-universitario.herokuapp.com request_id=a3afe8cf-8005-4364-982b-cb479d9a4c88 fwd="177.142.62.229" dyno=web.1 connect=5ms service=263ms status=500 bytes=238
+2014-02-22T06:59:57.869894+00:00 heroku[api]: Starting process with command `ls -l` by gabpires21@gmail.com
+2014-02-22T07:00:03.462081+00:00 heroku[run.3829]: State changed from starting to up
+2014-02-22T07:00:03.877797+00:00 heroku[run.3829]: Starting process with command `ls -l`
+2014-02-22T07:00:03.806358+00:00 heroku[run.3829]: Awaiting client
+2014-02-22T07:00:05.561839+00:00 heroku[run.3829]: Process exited with status 0
+2014-02-22T07:00:05.575763+00:00 heroku[run.3829]: State changed from up to complete
+2014-02-22T07:00:19.065312+00:00 heroku[api]: Starting process with command `ls -l DotaUniversitario/` by gabpires21@gmail.com
+2014-02-22T07:00:25.506152+00:00 heroku[run.1101]: State changed from starting to up
+2014-02-22T07:00:25.703985+00:00 heroku[run.1101]: Awaiting client
+2014-02-22T07:00:25.755179+00:00 heroku[run.1101]: Starting process with command `ls -l DotaUniversitario/`
+2014-02-22T07:00:27.414146+00:00 heroku[run.1101]: Process exited with status 0
+2014-02-22T07:00:27.427316+00:00 heroku[run.1101]: State changed from up to complete
+2014-02-22T07:01:54+00:00 heroku[slug-compiler]: Slug compilation started
+2014-02-22T07:02:24.881058+00:00 heroku[api]: Deploy 3f18747 by gabpires21@gmail.com
+2014-02-22T07:02:24.881145+00:00 heroku[api]: Release v17 created by gabpires21@gmail.com
+2014-02-22T07:02:25+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-02-22T07:02:25.814372+00:00 heroku[web.1]: State changed from up to starting
+2014-02-22T07:02:27.637869+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-02-22T07:02:27.957600+00:00 app[web.1]: 2014-02-22 01:02:27 [9] [INFO] Worker exiting (pid: 9)
+2014-02-22T07:02:29.087157+00:00 heroku[web.1]: Process exited with status 143
+2014-02-22T07:02:32.543231+00:00 heroku[web.1]: Starting process with command `python manage.py collectstatic --noinput ; gunicorn DotaUniversitario.wsgi`
+2014-02-22T07:02:35.401283+00:00 app[web.1]: 0 static files copied, 12 unmodified.
+2014-02-22T07:02:35.401283+00:00 app[web.1]: 
+2014-02-22T07:02:36.505064+00:00 app[web.1]: 2014-02-22 07:02:36 [4] [INFO] Using worker: sync
+2014-02-22T07:02:36.502369+00:00 app[web.1]: 2014-02-22 07:02:36 [4] [INFO] Starting gunicorn 18.0
+2014-02-22T07:02:36.505007+00:00 app[web.1]: 2014-02-22 07:02:36 [4] [INFO] Listening at: http://0.0.0.0:51888 (4)
+2014-02-22T07:02:36.525847+00:00 app[web.1]: 2014-02-22 07:02:36 [9] [INFO] Booting worker with pid: 9
+2014-02-22T07:02:36.983696+00:00 heroku[web.1]: State changed from starting to up
