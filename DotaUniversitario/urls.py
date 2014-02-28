@@ -16,7 +16,9 @@ urlpatterns = patterns('',
     url(r'^$', views.home),
     url(r'^home/$', views.home),
     url(r'^sobre/$', views.about),
-    url(r'^copa-minerva/(\d+)/$', views.copa_minerva),
+    url(r'^login/$', views.login),
+    url(r'^cadastro/$', views.cadastro),
+    url(r'^logout/$', views.logout),
     
     # campeonatos
     url(r'^campeonatos/todos/$', campeonatos_views.todos),
@@ -27,7 +29,6 @@ urlpatterns = patterns('',
     url(r'^campeonatos/(\d+)/$', campeonatos_views.visualizar),
     
     # ligas
-    url(r'^ligas/ufrj/$', views.liga_ufrj),
     url(r'^ligas/(\d+)/$', ligas_views.visualizar),
     
     # universidades

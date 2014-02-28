@@ -2,6 +2,7 @@
 
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
+from django.template import RequestContext
 import datetime
 
 from ligas.models import Liga
@@ -32,4 +33,5 @@ def visualizar(request, id):
                     'campeonatos_andamento': campeonatos_andamento, 
                     'campeonatos_agendados': campeonatos_agendados,
                     'campeonatos_terminados': campeonatos_terminados,
-                    })
+                    }, context_instance=RequestContext(request)
+                )

@@ -1,13 +1,14 @@
 #encoding:utf-8
 
 from universidades.models import Universidade
+from times.models import Time
+from usuarios.models import Usuario
 from django.db import models
 import datetime
 
 class Campeonato(models.Model):
     nome = models.CharField(max_length=40)
-    criador = models.CharField(max_length=40)
-    criador_email = models.EmailField()
+    criador = models.ForeignKey(Usuario)
     descricao = models.TextField()
     
     data_criacao = models.DateField(auto_now_add=True)
@@ -18,8 +19,8 @@ class Campeonato(models.Model):
     inicio_partidas = models.DateField(null=True)
     fim_partidas = models.DateField(null=True)
     
-    campeao = models.CharField(max_length=40, null=True)
-    vicecampeao = models.CharField(max_length=40, null=True)
+    campeao = models.ForeignKey(Time, null=True, related_name='time_campeao')
+    vicecampeao = models.ForeignKey(Time, null=True, related_name='time_vice')
     
     vagas = models.IntegerField()
     
@@ -56,3 +57,13 @@ class Campeonato(models.Model):
     
     class Meta:
         ordering = ['-inicio_inscricoes']
+        
+        
+class Inscricao(models.Model):
+    time = models.ForeignKey(Time)
+    campeonato = models.ForeignKey(Campeonato)
+
+    data_inscricao = models.DateField(auto_now_add=True)
+    
+    def __unicode__(self):
+        return u'{0} - {1}'.format(self.time.nome, self.campeonato.nome)

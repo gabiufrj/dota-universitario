@@ -1,17 +1,48 @@
 {% extends "base.html" %}
     {% block content %}
+    <!-- Carousel
+    ================================================== -->
     <div class="container">
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Liga Universitária</h1>
-        <ul>
-            <p>Aqui você encontrará informações sobre campeonatos de cada universidade, além de campeonatos regionais e nacionais.</p>
-            <p>E caso esteja interessado em criar e filiar a sua universidade à Liga Universitária, oferecemos todo o suporte necessário!</p>
-            <p>
-                <a class="btn btn-lg btn-primary" href="#" target="#" role="button">Ver página no facebook &raquo;</a>
-            </p>
-        </ul>
-      </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active dota-carousel-indicator"></li>
+            <li data-target="#myCarousel" data-slide-to="1" class="dota-carousel-indicator"></li>
+            <li data-target="#myCarousel" data-slide-to="2" class="dota-carousel-indicator"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item dota-carousel-item active">
+              <img src="{{ STATIC_URL }}images/DrowRangerRenderwithiceeffect.png" style="height:342px;" />
+              <div class="container">
+                <div class="carousel-caption dota-carousel-text">
+                  <h1>Liga Universitária</h1>
+                  <h4>Aqui você encontrará informações sobre campeonatos de cada universidade, além de campeonatos regionais e nacionais!</h4>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Curta nossa página no facebook! &raquo;</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item dota-carousel-item">
+              <img src="{{ STATIC_URL }}images/invoker.png" style="height:342px;" />
+              <div class="container">
+                <div class="carousel-caption dota-carousel-text">
+                  <h1>Sua universidade ainda não tem uma liga?</h1>
+                  <h4>Crie a liga da sua universidade e entre na Liga Universitária, podemos ajudar!</h4>
+                  <p><a class="btn btn-lg btn-primary" href="/ligas/cadastrar/" role="button">Veja como</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item dota-carousel-item">
+              <img src="{{ STATIC_URL }}images/tusk.jpg" style="height:342px;" />
+              <div class="container">
+                <div class="carousel-caption dota-carousel-text">
+                  <h1>Terceira Copa Minerva</h1>
+                  <h4>Atenção times da UFRJ, a terceira edição da Copa Minerva se aproxima! Já inscreveu seu time?</h4>
+                  <p><a class="btn btn-lg btn-primary" href="/campeonatos/1" role="button">Ver campeonato</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.carousel -->
     </div> <!-- /container -->
     
     <!-- Informações de contexto, campeonatos, eventos, streams, etc -->
@@ -19,7 +50,8 @@
         <div class="row">
             <!-- Campeonatos -->
             <div class="col-sm-4">
-                <h3>Campeonatos</h3>            
+                <h3 class="dota-index-header">Campeonatos</h3>    
+                <hr class="dota-index-header-barra" />                
                 <div class="list-group">
                     <a href="/campeonatos/andamento" class="list-group-item">
                         <p class="list-group-item-text">
@@ -46,7 +78,8 @@
             <!-- /Campeonatos -->   
             <!-- Próximas partidas -->
             <div class="col-sm-4">
-                <h3>Próximas partidas</h3>
+                <h3 class="dota-index-header">Próximas partidas</h3>
+                <hr class="dota-index-header-barra" />
                 <div class="list-group">
                     <a href="#" class="list-group-item">
                         <h4 class="list-group-item-heading"><small class="pull-right">LIVE</small></h4>
@@ -77,7 +110,8 @@
             <!-- /Próximas partidas -->
             <!-- Últimos resultados -->
             <div class="col-sm-4">
-                <h3>Últimos resultados</h3>
+                <h3 class="dota-index-header">Últimos resultados</h3>
+                <hr class="dota-index-header-barra" />
                 <div class="list-group">
                     <a href="#" class="list-group-item">
                         <h4 class="list-group-item-heading"><small class="pull-right">há 12 horas</small></h4>
@@ -108,7 +142,8 @@
         <div class="row">
             <!-- Notícias -->
             <div class="col-sm-4">
-                <h3>Notícias</h3>
+                <h3 class="dota-index-header">Notícias</h3>
+                <hr class="dota-index-header-barra" />
                 <div class="list-group">
                     {% for noticia in lista_noticias %}
                         <a href="/noticias/{{noticia.id}}" class="list-group-item">
@@ -128,7 +163,8 @@
             <!-- /Notícias -->        
             <!-- Streams -->
             <div class="col-sm-4">
-                <h3>Streams</h3>
+                <h3 class="dota-index-header">Streams</h3>
+                <hr class="dota-index-header-barra" />
                 <ul class="list-group">
                     <li class="list-group-item"><a href="#" target="#">Dendimon</a><span class="pull-right"><strong>ON</strong></span></li>
                     <li class="list-group-item"><a href="#" target="#">Dest</a><span class="pull-right"><strong>ON</strong></span></li>
@@ -139,6 +175,19 @@
                 </ul>
             </div>
             <!-- /Streams -->
+            <!-- Imagem -->
+            <div class="col-sm-4">
+                <img src="{{ STATIC_URL }}images/kotl.png" class="dota-index-img-footer" />
+            </div>
+            <!-- /Imagem -->
         </div>
     </div>
+    
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 4000
+        });
+      });
+    </script>
     {% endblock %}

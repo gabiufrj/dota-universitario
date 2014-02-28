@@ -1,6 +1,6 @@
 # Django settings for DotaUniversitario project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -9,16 +9,19 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#        'NAME': 'dota-universitario',                      # Or path to database file if using sqlite3.
-#        'USER': 'postgres',                      # Not used with sqlite3.
-#        'PASSWORD': 'superuser',                  # Not used with sqlite3.
-#        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-#        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dota-universitario',                      # Or path to database file if using sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': 'superuser',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,7 +72,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/DotaUniversitario/static',
+    'C:/Users/Gabriel/Desktop/Django/Projetos/DotaUniversitario/dota-universitario/DotaUniversitario/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -122,6 +125,7 @@ INSTALLED_APPS = (
     'ligas',
     'times',
     'universidades',
+    'usuarios',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -166,7 +170,7 @@ LOGGING = {
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 # DESCOMENTAR A LINHA ABAIXO PARA DEPLOY
-DATABASES = {'default': dj_database_url.config(default=os.environ["DATABASE_URL"])}
+#DATABASES = {'default': dj_database_url.config(default=os.environ["DATABASE_URL"])}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

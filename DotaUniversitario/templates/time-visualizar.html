@@ -6,7 +6,7 @@
         </div>
         
         <h3>Resumo</h3>
-        <table class="table">
+        <table class="table" style="width:40%">
             <tbody>
                 <tr>
                     <th>Sigla</th>
@@ -16,16 +16,35 @@
                     <th>Universidade</th>
                     <td>{{ time.universidade.nome }}</td>
                 </tr>
+            </tbody>
+        </table>
+        
+        <br />        
+        <h3>Integrantes</h3>
+        <table class="table" style="width:40%">
+            <thead>
                 <tr>
-                    <th>Capitão</th>
-                    <td>{{ time.capitao }}</td>
+                    <th>Nick</th>
+                    <th>Papel</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for membro in membros %}                
+                    <tr>
+                        {% if membro.capitao %}
+                            <td>{{ membro.user.user.username }} (Capitão)</td>
+                        {% else %}
+                            <td>{{ membro.user.user.username }}</td>
+                        {% endif %}
+                        <td>{{ membro.papel }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
         
         <br />
         <h3>Estatísticas</h3>
-        <table class="table">
+        <table class="table" style="width:40%">
             <tbody>
                 <tr>
                     <th>Partidas disputadas</th>
