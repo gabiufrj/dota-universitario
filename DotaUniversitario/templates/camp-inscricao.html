@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header" id="dota-campeonato-header">
+            <h2 id="dota-campeonato-nome">{{ campeonato.nome }}</h2>
+        </div>
+        
+        <!-- Mostrar combobox com os times que o usuário é capitão -->
+        {% if times %}
+            <form class="form-horizontal cadastro-form" name="InscreverTimeForm" action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="nome">Time</label>
+                <div class="col-sm-6">
+                    <select name="time" class="form-control">
+                        {% for time in times %}
+                            <option value="{{time.id}}">{{time.nome}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success">Inscrever <span class="glyphicon glyphicon-ok"></span></button>
+                </div>
+            </div>
+                
+            </form>
+        {% else %}
+            <p>Parece que você não é capitão de nenhum time. Peça ao seu capitão para inscrever seu time, ou <a href="/times/criar/">crie</a> um agora mesmo!</p>
+        {% endif %}
+    </div>
+    {% endblock %}

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
     {% block content %}
     <div class="container">
-        <div class="page-header">
-            <h2>{{ campeonato.nome }}</h2>
+        <div class="page-header" id="dota-campeonato-header">
+            <h2 id="dota-campeonato-nome">{{ campeonato.nome }}</h2>
+            {% if user.is_authenticated %}
+                {% if inscricoes_abertas %}
+                    <a href="inscricao/" type="button" class="btn btn-success" id="dota-campeonato-btn-inscricao">Inscrever time <span class="glyphicon glyphicon-ok"></span></a>
+                {% endif %}
+            {% endif %}
         </div>
         
         <div class="page-header">
@@ -57,14 +62,34 @@
                         <td>{{ campeonato.vicecampeao }}</td>
                     </tr>
                 {% endif %}
-                <tr>
-                    <th>Casters</th>
-                    <td>Bam bam e XaKaW</td>
-                </tr>
             </tbody>
         </table>
         
-        <!-- Classificação (só faz sentido em round robin -->
+        <!-- Times inscritos -->
+        <div class="page-header">
+            <h3>Times inscritos ({{ inscricoes|length }}/{{ campeonato.vagas }})</h3>
+        </div>
+        {% if inscricoes %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="list-group">
+                        {% for inscricao in inscricoes %}
+                            <li class="list-group-item"><a href="/times/{{inscricao.time.id}}">{{inscricao.time.nome}} ({{inscricao.time.sigla}})</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+            <!-- Se inscrições tiverem abertas -->
+            {% if inscricoes_abertas %}
+                <p>Nenhum time inscrito ainda, inscreva seu time!</p>
+            {% else %}
+                <p>Nenhum time se inscreveu para este campeonato =(.</p>
+            {% endif %}
+        {% endif %}
+        <!-- /Times inscritos -->
+        
+        <!-- Classificação (só faz sentido em round robin) -->
         <div class="page-header">
             <h3>Classificação</h3>
         </div>

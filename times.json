@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "times.time", "fields": {"data_criacao": "2014-02-23", "sigla": "T1", "universidade": 1, "nome": "Time1"}}, {"pk": 1, "model": "times.contrato", "fields": {"papel": "Offlaner", "capitao": false, "user": 2, "time": 1}}, {"pk": 2, "model": "times.contrato", "fields": {"papel": "Support", "capitao": true, "user": 1, "time": 1}}]

@@ -31,16 +31,23 @@
             <tbody>
                 {% for membro in membros %}                
                     <tr>
+                        <td><a href="/usuarios/{{membro.user.user.username}}">{{membro.user.user.username}} </a>
                         {% if membro.capitao %}
-                            <td>{{ membro.user.user.username }} (Capitão)</td>
-                        {% else %}
-                            <td>{{ membro.user.user.username }}</td>
+                            (Capitão)
                         {% endif %}
+                        </td>
                         <td>{{ membro.papel }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% if capitao %}
+            <a href="adicionar_membro/" type="button" class="btn btn-success">Adicionar jogador <span class="glyphicon glyphicon-ok"></span></a>
+        {% else %}
+            {% if integrante %}
+                <a href="sair/" type="button" class="btn btn-danger">Sair do time <span class="glyphicon glyphicon-remove"></span></a>
+            {% endif %}
+        {% endif %}
         
         <br />
         <h3>Estatísticas</h3>

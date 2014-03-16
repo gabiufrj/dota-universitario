@@ -1,0 +1,2 @@
+Running `python manage.py dumpdata ligas` attached to terminal... up, run.5078
+[{"pk": 1, "fields": {"nome": "UFRJ", "descricao": "Liga Minerva, a liga de Dota 2 da UFRJ!", "administrador_email": "alguem@ufrj.br", "universidade": 1, "data_criacao": "2014-02-24", "administrador": "alguem"}, "model": "ligas.liga"}]

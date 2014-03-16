@@ -85,19 +85,31 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th>Nome</th>
-                        <th>Início das inscrições</th>
-                        <th>Término das inscrições</th>
-                        <th>Começo das partidas</th>
+                            <th>Nome</th>
+                            <th>Início das inscrições</th>
+                            <th>Término das inscrições</th>
+                            <th>Inscritos/Vagas</th>
+                            <th>Começo das partidas</th>
+                            {% if user.is_authenticated %}
+                                <th></th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
                         {% for campeonato in campeonatos_agendados %}
                             <tr>
-                                <td><a href="campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
+                                <td><a href="/campeonatos/{{campeonato.id}}">{{ campeonato.nome }}</a></td>
                                 <td>{{ campeonato.inicio_inscricoes|date:"d/m/Y" }}</td>
                                 <td>{{ campeonato.fim_inscricoes|date:"d/m/Y" }}</td>
+                                <td>{{ campeonato.numero_inscricoes }}/{{ campeonato.vagas }}
                                 <td>{{ campeonato.inicio_partidas|date:"d/m/Y" }}</td>
+                                {% if user.is_authenticated %}
+                                    {% if campeonato.is_inscricoes_abertas %}
+                                        <td><a href="/campeonatos/{{campeonato.id}}/inscricao/" title="Inscrever time"><span class="glyphicon glyphicon-list-alt"></span></a></td>
+                                    {% else %}
+                                        <td><a href=""><span class="glyphicon glyphicon-envelope" title="Ser notificado quando inscrições abrirem"></span></a></td>
+                                    {% endif %}
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -111,7 +123,7 @@
         <div class="page-header">
             <h3>Campeonatos passados</h3>
         </div>
-        {% if campeonatos_passados|length > 0 %}
+        {% if campeonatos_terminados|length > 0 %}
             <div style="width:100%">
                 <table class="table">
                     <thead>

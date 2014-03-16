@@ -7,6 +7,7 @@ from campeonatos import views as campeonatos_views
 from ligas import views as ligas_views
 from universidades import views as universidades_views
 from times import views as times_views
+from usuarios import views as usuarios_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -27,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^campeonatos/terminados/$', campeonatos_views.terminados),
     url(r'^campeonatos/crie-o-seu/$', campeonatos_views.criar),
     url(r'^campeonatos/(\d+)/$', campeonatos_views.visualizar),
+    url(r'^campeonatos/(\d+)/inscricao/$', campeonatos_views.inscrever),
     
     # ligas
     url(r'^ligas/(\d+)/$', ligas_views.visualizar),
@@ -35,10 +37,18 @@ urlpatterns = patterns('',
     
     # times
     url(r'^times/(\d+)/$', times_views.visualizar),
+    url(r'^times/meus-times/$', times_views.todos_por_usuario),
+    url(r'^times/criar/$', times_views.criar),
+    url(r'^times/(\d+)/adicionar_membro/$', times_views.inserir_membro),
+    url(r'^times/(\d+)/sair/$', times_views.sair),
+    
     
     # notícias
     url(r'^noticias/(\d+)/$', noticias_views.noticia_simples),
     url(r'^noticias/$', noticias_views.todas),
+    
+    # usuários
+    url(r'^usuarios/(.+)/$', usuarios_views.visualizar),
     
     # Examples:
     # url(r'^$', 'DotaUniversitario.views.home', name='home'),

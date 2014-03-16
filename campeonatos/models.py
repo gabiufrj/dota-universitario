@@ -19,8 +19,8 @@ class Campeonato(models.Model):
     inicio_partidas = models.DateField(null=True)
     fim_partidas = models.DateField(null=True)
     
-    campeao = models.ForeignKey(Time, null=True, related_name='time_campeao')
-    vicecampeao = models.ForeignKey(Time, null=True, related_name='time_vice')
+    campeao = models.ForeignKey(Time, null=True, blank=True, related_name='time_campeao')
+    vicecampeao = models.ForeignKey(Time, null=True, blank=True, related_name='time_vice')
     
     vagas = models.IntegerField()
     
@@ -54,6 +54,19 @@ class Campeonato(models.Model):
 
     def __unicode__(self):
         return self.nome
+        
+    def numero_inscricoes(self):
+        qtd = Inscricao.objects.filter(campeonato=self).count()
+        return qtd
+        
+    def is_inscricoes_abertas(self):
+        hoje = datetime.date.today()
+        inscricoes_abertas = False
+        if self.fim_inscricoes >= hoje:
+            if self.inicio_inscricoes <= hoje:
+                inscricoes_abertas = True
+                
+        return inscricoes_abertas
     
     class Meta:
         ordering = ['-inicio_inscricoes']

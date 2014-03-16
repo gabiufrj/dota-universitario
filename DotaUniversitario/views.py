@@ -4,7 +4,12 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.template import RequestContext
+from django.contrib.auth.models import User
+
 from noticias.models import Noticia
+from usuarios.models import Usuario
+from universidades.models import Universidade
+from DotaUniversitario.forms import CadastroForm, CadastroModelForm
     
 def home(request):
     # pega as notícias do banco
@@ -42,5 +47,38 @@ def logout(request):
     
     return redirect('/')
     
+def create_user(request, form_cleaned_data):
+    try:
+        username = form_cleaned_data['username']
+        senha = form_cleaned_data['password']
+        email = form_cleaned_data['email']
+        universidade = form_cleaned_data['universidade']
+    except:
+        return False
+        
+    user_novo, created = User.objects.get_or_create(username=username, email=email)
+    if created:
+        user_novo.set_password(senha)
+        user_novo.save()
+    
+    uni = Universidade.objects.get(id=universidade)
+    usuario_novo, created = Usuario.objects.get_or_create(user=user_novo, universidade=uni)
+
+    user = auth.authenticate(username=username, password=senha)
+    if user is not None:
+        auth.login(request, user)
+        return True
+    
+    return False
+    
 def cadastro(request):
-    return render(request, 'cadastro.html', {}, context_instance=RequestContext(request))
+    if request.method == 'GET':
+        form = CadastroForm()
+    else:
+        form = CadastroForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            if create_user(request, form_data):
+                return redirect('/')
+    
+    return render(request, 'cadastro.html', {'cadastro_form': form}, context_instance=RequestContext(request))
