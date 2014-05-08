@@ -11,5 +11,6 @@ pdfminer==20110515
 psycopg2==2.4.6
 static==1.0.2
 virtualenv==1.11.4
+django-summernote==0.5.8
 
 -e git+https://github.com/wnh/dj-static.git@feature/django-1.4-compat#egg=dj-static
