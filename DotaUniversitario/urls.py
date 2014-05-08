@@ -42,10 +42,15 @@ urlpatterns = patterns('',
     url(r'^times/(\d+)/adicionar_membro/$', times_views.inserir_membro),
     url(r'^times/(\d+)/sair/$', times_views.sair),
     
+    # partidas
+    url(r'^partidas/(\d+)/$', campeonatos_views.visualizar_partida),
+    url(r'^partidas/(\d+)/gerar-senha/$', campeonatos_views.partida_gerar_senha),
     
     # notícias
-    url(r'^noticias/(\d+)/$', noticias_views.noticia_simples),
     url(r'^noticias/$', noticias_views.todas),
+    url(r'^noticias/(\d+)/$', noticias_views.noticia_simples),
+    url(r'^noticias/minhas/$', noticias_views.todas_proprias),
+    url(r'^noticias/criar/$', noticias_views.nova_noticia),    
     
     # usuários
     url(r'^usuarios/(.+)/$', usuarios_views.visualizar),
@@ -59,4 +64,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    
+    # WYSIWYG editor
+    url(r'^summernote/', include('django_summernote.urls')),
 )

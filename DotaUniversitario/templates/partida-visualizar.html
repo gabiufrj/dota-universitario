@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>Detalhes da partida</h2>
+        </div>
+        
+        <div class="dota-match">
+            <div class="dota-match-header">
+                <div class="dota-match-team-a">
+                    {{ partida.timeA.nome }}
+                </div>
+                <div class="dota-match-versus">
+                    vs
+                </div>
+                <div class="dota-match-team-b">
+                    {{ partida.timeB.nome }}
+                </div>
+            </div>
+            
+            <div class="dota-match-content">
+                <b>Match id:</b> {{ partida.match_id }} <br/>
+                <b>Marcada para:</b> {{ partida.data_agendada|date:"d/m/Y" }} <br/>
+                <b>Realizada em:</b> {{ partida.data_realizacao|date:"d/m/Y" }} <br/>
+            </div>
+            <div class="dota-match-password">
+                <b>Senha do lobby: </b>
+                {% if partida.senha_lobby %}
+                    {{ partida.senha_lobby }}
+                {% else %}
+                    <a href="gerar-senha/" class="btn btn-primary">Criar senha!</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}

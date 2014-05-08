@@ -6,7 +6,7 @@ from django.template import RequestContext
 from django.shortcuts import render, redirect
 import datetime
 
-from campeonatos.models import Campeonato, Inscricao
+from campeonatos.models import Campeonato, Inscricao, Partida
 from times.models import Time, Contrato
 
 def todos(request):
@@ -49,6 +49,9 @@ def visualizar(request, id):
     # recupera inscricoes do campeonato
     inscricoes = Inscricao.objects.filter(campeonato=campeonato)
     
+    # recupera partidas do campeonato
+    partidas = Partida.objects.filter(campeonato=campeonato)
+    
     # verifica se as inscrições estão abertas
     hoje = datetime.date.today()
     inscricoes_abertas = False
@@ -60,6 +63,7 @@ def visualizar(request, id):
                     {
                         'campeonato': campeonato,
                         'inscricoes': inscricoes,
+                        'partidas': partidas,
                         'inscricoes_abertas': inscricoes_abertas,
                     }, context_instance=RequestContext(request)
                 )
@@ -110,3 +114,46 @@ def inscrever(request, id):
 def criar(request):
     return render(request, 'camp-inscricoes-abertas.html', {}, 
                     context_instance=RequestContext(request))
+                    
+
+
+# relacionados a partidas
+def visualizar_partida(request, id):
+    # verifica se o id é realmente inteiro
+    try:
+        id = int(id)
+    except ValueError:
+        raise Http404()
+        
+    # recupera partida no banco
+    try:
+        partida = Partida.objects.get(id=id)
+    except Partida.DoesNotExist:
+        raise Http404()
+    
+    return render(request, 'partida-visualizar.html', 
+                    {
+                        'partida': partida,
+                    }, context_instance=RequestContext(request)
+                )
+                
+def partida_gerar_senha(request, id):
+    # recupera a partida
+    # verifica se o id é realmente inteiro
+    try:
+        id = int(id)
+    except ValueError:
+        raise Http404()
+        
+    # recupera partida no banco
+    try:
+        partida = Partida.objects.get(id=id)
+    except Partida.DoesNotExist:
+        raise Http404()
+        
+    # gera senha aleatoria
+    partida.senha_lobby = "senhaAleatoria"
+    # salva no banco
+    partida.save()
+    # retorna pra página da partida
+    return redirect('/partidas/' + id)

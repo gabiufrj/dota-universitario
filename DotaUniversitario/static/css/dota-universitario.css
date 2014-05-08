@@ -80,3 +80,58 @@ body {
 #dota-campeonato-nome {
     float: left;
 }
+
+#id_texto-iframe {
+    width: 749px;
+}
+
+.dota-match {
+    width: 60%;
+    border: 1px solid #222;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    
+    margin-bottom: 20px;
+    background-color: #eee;
+}
+
+.dota-match-header {
+    background-color: #222;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    display: inline-flex;
+}
+
+.dota-match-team-a {
+    padding-left: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dota-match-versus {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+    font-weight: bold;
+}
+
+.dota-match-team-b {
+    padding-right: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dota-match-content, .dota-match-password {
+    padding-left: 20px;
+    padding-top: 4px;
+    padding-bottom: 10px;
+}
+
+.dota-match-password {
+    height: 40px;
+    padding-top: 10px;
+}

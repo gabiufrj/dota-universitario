@@ -2,9 +2,45 @@
     {% block content %}    
     <div class="container">
         <div class="page-header">
-            <h2>{{ noticia_titulo }}</h2>
-            <small style="color: #bbb">{{ noticia_autor }}, em {{ noticia_criacao }}</small>
+            <h2>{{ noticia.titulo }}</h2>
+            <small style="color: #bbb">{{ noticia.autor }}, em {{ noticia.data_criacao }}</small>
         </div>
-        <p>{{ noticia_conteudo }}</p>
+        <p>{{ noticia.conteudo|safe }}</p>
+        
+        <div class="d2u-comentarios">
+            <hr />
+            <h3>Comentários</h3>
+            {% for comentario in comentarios %}
+                <div class="d2u-comentario">
+                    <b>{{ comentario.user.user.username }}</b> <small>, em {{ comentario.data_criacao|date:"d/m/Y H:i:s" }}</small>
+                    <br />
+                    <p>{{ comentario.conteudo }}</p>
+                </div>
+            {% endfor %}
+            
+            <!-- usuários logados podem comentar -->
+            <!-- comment area -->
+            <hr />
+            <div class="d2u-novo-comentario">
+            {% if user.is_authenticated %}
+                <form class="form-horizontal" name="CriarComentarioForm" action="" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            {{ comentario_form.texto }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ comentario_form.texto.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm" style="margin-left: 15px;">Enviar comentário</button>
+                    </div>
+            {% else %}
+                <p>Somente usuários logados podem comentar. <a href="/login">Login</a></p>
+            {% endif %}
+            </div>
+            <!-- /comment area-->
+        </div>
     </div> <!-- /container -->
     {% endblock %}

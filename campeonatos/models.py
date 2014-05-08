@@ -80,3 +80,30 @@ class Inscricao(models.Model):
     
     def __unicode__(self):
         return u'{0} - {1}'.format(self.time.nome, self.campeonato.nome)
+        
+        
+# Fazer classe de "trabalho" em um campeonato (para casters, staff, etc)
+        
+class Partida(models.Model):
+    timeA = models.ForeignKey(Time, related_name='time_a')
+    timeB = models.ForeignKey(Time, related_name='time_b')
+
+    campeonato = models.ForeignKey(Campeonato)
+    
+    # match id, só depois da partida realizada
+    match_id = models.CharField(max_length=20, null=True)
+    
+    data_agendada = models.DateField(null=True)
+    data_realizacao = models.DateField(null=True)
+    
+    vencedor = models.CharField(max_length=40, null=True)
+    
+    # senha do lobby, que será gerada aleatoriamente, só armazenar
+    # depois de alguém criar o lobby via site
+    senha_lobby = models.CharField(max_length=10, null=True)
+
+    class Meta:
+        ordering = ['-data_realizacao', 'data_agendada']
+    
+    def __unicode__(self):
+        return u'{0} vs. {1}'.format(self.timeA.nome, self.timeB.nome)

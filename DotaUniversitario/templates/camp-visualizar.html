@@ -101,42 +101,61 @@
         <div class="page-header">
             <h3>Partidas</h3>
         </div>
-        <div style="width:80%">
-            <table class="table">
-                <thead>
-                    <tr>
-                    <th>#Match ID</th>
-                    <th>Time 1</th>
-                    <th>Time 2</th>
-                    <th>Duração</th>
-                    <th width="10%">Download</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Time A</td>
-                        <td>Time B</td>
-                        <td>10:00</td>
-                        <td style="text-align: center"><i class="glyphicon glyphicon-download"></i></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Time A</td>
-                        <td>Time B</td>
-                        <td>10:00</td>
-                        <td style="text-align: center"><i class="glyphicon glyphicon-download"></i></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Time A</td>
-                        <td>Time B</td>
-                        <td>10:00</td>
-                        <td style="text-align: center"><i class="glyphicon glyphicon-download"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        {% if partidas %}
+        <h4>Últimas partidas</h4>
+            <div style="width:80%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Match ID</th>
+                        <th>Time 1</th>
+                        <th>Time 2</th>
+                        <th>Vencedor</th>
+                        <th>Data da partida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partida in partidas %}
+                            {% if partida.vencedor %}
+                            <tr>
+                                <td><a href="/partidas/{{ partida.id }}">{{ partida.match_id }}</a></td>
+                                <td>{{ partida.timeA.nome }}</td>
+                                <td>{{ partida.timeB.nome }}</td>
+                                <td>{{ partida.vencedor }}</td>
+                                <td>{{ partida.data_realizacao }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        <h4>Próximas partidas</h4>
+            <div style="width:80%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Time 1</th>
+                        <th>Time 2</th>
+                        <th>Data marcada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partida in partidas %}
+                            {% if not partida.vencedor %}
+                            <tr>                                
+                                <td>{{ partida.timeA.nome }}</td>
+                                <td>{{ partida.timeB.nome }}</td>
+                                <<td>{{ partida.data_agendada }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <small><i>Nenhuma partida cadastrada nesse campeonato ainda.</i></small>
+        {% endif %}
+        
         <!-- /Partidas -->
     </div>
     {% endblock %}
