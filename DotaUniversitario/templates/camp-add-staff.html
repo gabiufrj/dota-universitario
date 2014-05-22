@@ -2,24 +2,24 @@
     {% block content %}
     <div class="container">
         <div class="page-header">
-            <h2>Criar notícia</h2>
+            <h2>Adicionar membro de staff</h2>
         </div>
         
-        <form class="form-horizontal cadastro-form" name="CriarNoticiaForm" action="" method="post">
+        <form class="form-horizontal cadastro-form" name="InserirStaffForm" action="" method="post">
             {% csrf_token %}
             {% if next %}
                 <input type="hidden" name="next" value="{{ next }}" />
             {% endif %}
             
-            {% for field in noticia_form %}
+            {% for field in staff_form %}
                 {% if not field.is_hidden %}
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="nome">{{ field.label }}</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             {{ field }}
                         </div>
                         {% if field.errors %}
-                        <div class="col-sm-2 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
                             {{ field.errors|first }}
                         </div>
                         {% endif %}
@@ -29,10 +29,9 @@
                 {% endif %}
             {% endfor %}
             
-            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-9">
-                    <button type="submit" class="btn btn-primary btn-lg">Criar</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Adicionar</button>
                 </div>
             </div>
         </form>

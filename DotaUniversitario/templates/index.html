@@ -149,7 +149,7 @@
                         <a href="/noticias/{{noticia.id}}" class="list-group-item">
                             <h4 class="list-group-item-heading">{{ noticia.titulo }} <small class="pull-right">{{ noticia.data_editado|date:"d/m/Y" }}</small></h4>
                             <p class="list-group-item-text">
-                                {{ noticia.conteudo|truncatewords:"13" }}
+                                {{ noticia.resumo }}
                             </p>
                         </a>
                     {% endfor %}

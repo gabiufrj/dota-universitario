@@ -81,8 +81,18 @@ class Inscricao(models.Model):
     def __unicode__(self):
         return u'{0} - {1}'.format(self.time.nome, self.campeonato.nome)
         
-        
-# Fazer classe de "trabalho" em um campeonato (para casters, staff, etc)
+
+class Trabalho(models.Model):
+    campeonato = models.ForeignKey(Campeonato)
+    usuario = models.ForeignKey(Usuario)
+    
+    ROLE_ESCOLHAS = (
+        ('Caster', 'Narrador'),
+        ('Admin', 'Administrador'),
+        ('Staff', 'Staff em geral'),
+    )
+    papel = models.CharField(max_length=15, choices=ROLE_ESCOLHAS)
+
         
 class Partida(models.Model):
     timeA = models.ForeignKey(Time, related_name='time_a')

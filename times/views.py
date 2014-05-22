@@ -6,6 +6,7 @@ from universidades.models import Universidade
 from times.forms import CriarTimeForm, InserirMembroForm
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render, redirect
@@ -77,7 +78,7 @@ def cria_time(username, form_data):
     uni = Universidade.objects.get(id=universidade)
 
     # Cria o time
-    time_novo, created = Time.objects.get_or_create(nome=form_nome, sigla=form_sigla, universidade=uni)    
+    time_novo, created = Time.objects.get_or_create(nome=form_nome, sigla=form_sigla, universidade=uni)
     
     # Associa o usuario ao time
     try:
@@ -102,7 +103,12 @@ def criar(request):
         if form.is_valid():
             form_data = form.cleaned_data
             if cria_time(request.user.username, form_data):
+                messages.success(request, 'Time "' + form_data['sigla'] + '" criado com sucesso!')
                 return redirect('/times/meus-times/')
+            else:
+                messages.error(request, 'Não foi possível criar o time desejado. Erro interno =/.')
+        else:
+            messages.error(request, 'Não foi possível criar o time desejado. Verifique os campos do formulário.')
     
     return render(request, 'time-criar.html', {'time_form': form}, context_instance=RequestContext(request))
     
@@ -147,7 +153,8 @@ def inserir_membro(request, id):
     try:
         time = Time.objects.get(id=id)
     except Time.DoesNotExist:
-        raise Http404()
+        messages.error(request, 'O time pedido não existe, confira a url digitada =).')
+        return redirect('/')
     
     if request.method == 'GET':
         # checar se o usuário é capitão do time
@@ -155,7 +162,8 @@ def inserir_membro(request, id):
             contrato = Contrato.objects.get(user__user__username=request.user.username, time__id=id)
             capitao = contrato.capitao
         except Contrato.DoesNotExist:
-            raise Http404()
+            messages.error(request, 'Só o capitão do time pode adicionar membros =(.')
+            return redirect('/times/meus-times/')
             
         form = InserirMembroForm(initial={'time_id': id})
     else:
@@ -163,8 +171,13 @@ def inserir_membro(request, id):
         if form.is_valid():
             form_data = form.cleaned_data
             if insere_membro(request.user.username, id, form_data):
+                messages.sucess(request, 'Membro adicionado com sucesso!')
                 redirect_url = u'/times/{0}/'.format(id)
                 return redirect(redirect_url)
+            else:
+                messages.error(request, 'Erro interno ao inserir usuário =/. Tente mais tarde ou contate-nos sobre o erro.')
+        else:
+            messages.error(request, 'Parece que há algo de errado no seu formulário, confira-o por favor =).')
 
     return render(request, 'time-inserir-membro.html', 
                     {
@@ -196,4 +209,5 @@ def sair(request, id):
         
     contrato.delete()
     redirect_url = u'/times/{0}/'.format(id)
+    messages.success(request, 'Agora você não faz mais parte do time "' + time.sigla + '".')
     return redirect(redirect_url)

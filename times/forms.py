@@ -14,9 +14,9 @@ class CriarTimeForm(forms.Form):
         CHOICES = [(uni.id, uni.sigla) for uni in universidades_disponiveis]
         self.fields["universidade"] = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
 
-    nome = forms.CharField(max_length=40, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'time'}))
-    sigla = forms.CharField(max_length=5, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'T'}))
-    universidade = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    nome = forms.CharField(label='Nome', max_length=40, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'time'}))
+    sigla = forms.CharField(label='Sigla', max_length=5, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'T'}))
+    universidade = forms.ChoiceField(label='Universidade', choices=CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     
     def clean_nome(self):
         name = self.cleaned_data['nome']

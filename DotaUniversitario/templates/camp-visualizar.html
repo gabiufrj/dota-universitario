@@ -29,6 +29,14 @@
                     <td>{{ campeonato.universidade }}</td>
                 </tr>
                 <tr>
+                    <th>Staff</th>
+                    <td>
+                        {% if criador %}
+                        <a href="/campeonatos/{{ campeonato.id }}/add-staff/">Adicionar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
                     <th>Início inscrições</th>
                     <td>{{ campeonato.inicio_inscricoes|date:"d/m/Y" }}</td>
                 </tr>

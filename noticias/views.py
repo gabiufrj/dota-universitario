@@ -2,6 +2,8 @@
 
 from datetime import datetime 
 
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.template import RequestContext
@@ -105,6 +107,7 @@ def cria_noticia(username, data):
     try:
         texto = data['texto']
         titulo = data['titulo']
+        resumo = data['resumo']
     except:
         return False
         
@@ -119,6 +122,7 @@ def cria_noticia(username, data):
     noticia.autor = usuario
     noticia.titulo = titulo
     noticia.conteudo = texto
+    noticia.resumo = resumo
     noticia.data_criacao = datetime.now()
     noticia.data_editado = datetime.now()
     
@@ -128,7 +132,8 @@ def cria_noticia(username, data):
         return False
 
     return True
-                
+
+@login_required()    
 def nova_noticia(request):
     sucesso = 0
     if request.method == 'GET':
@@ -138,9 +143,13 @@ def nova_noticia(request):
         if form.is_valid():
             form_data = form.cleaned_data
             if cria_noticia(request.user.username, form_data):
+                messages.success(request, 'Notícia inserida com sucesso!')
                 return redirect('/noticias/minhas/')
             else:
+                messages.error(request, 'Erro interno ao cadastrar notícia, tente novamente mais tarde =/.')
                 sucesso = -1
+        else:
+            messages.error(request, 'Parece que tem algo errado com sua notícia, confira ou contate-nos.')
                 
     return render(request, 'noticia-criar.html', 
                     {

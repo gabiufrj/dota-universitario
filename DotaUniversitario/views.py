@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.template import RequestContext
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from noticias.models import Noticia
 from usuarios.models import Usuario
@@ -66,7 +67,7 @@ def create_user(request, form_cleaned_data):
 
     user = auth.authenticate(username=username, password=senha)
     if user is not None:
-        auth.login(request, user)
+        auth.login(request, user)        
         return True
     
     return False
@@ -79,6 +80,11 @@ def cadastro(request):
         if form.is_valid():
             form_data = form.cleaned_data
             if create_user(request, form_data):
+                messages.success(request, 'Cadastro realizado com sucesso. Bem-vindo!')
                 return redirect('/')
+            else:
+                messages.error(request, 'Erro interno ao cadastrar usuário, tente novamente mais tarde =/.')
+        else:
+            messages.error(request, 'Parece que há algo errado com seu cadastro, confira-o e tente novamente =).')
     
     return render(request, 'cadastro.html', {'cadastro_form': form}, context_instance=RequestContext(request))

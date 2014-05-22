@@ -1,13 +1,17 @@
 #encoding:utf-8
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render, redirect
 import datetime
 
-from campeonatos.models import Campeonato, Inscricao, Partida
+from campeonatos.models import Campeonato, Inscricao, Partida, Trabalho
+from campeonatos.forms import CriarCampeonatoForm, InserirStaffForm
 from times.models import Time, Contrato
+from universidades.models import Universidade
+from usuarios.models import Usuario
 
 def todos(request):
     return render(request, 'index.html', {}, context_instance=RequestContext(request))
@@ -52,6 +56,9 @@ def visualizar(request, id):
     # recupera partidas do campeonato
     partidas = Partida.objects.filter(campeonato=campeonato)
     
+    # verifica se o usuário é criador do campeonato
+    criador = (request.user.username == campeonato.criador.user.username)
+    
     # verifica se as inscrições estão abertas
     hoje = datetime.date.today()
     inscricoes_abertas = False
@@ -65,6 +72,7 @@ def visualizar(request, id):
                         'inscricoes': inscricoes,
                         'partidas': partidas,
                         'inscricoes_abertas': inscricoes_abertas,
+                        'criador': criador,
                     }, context_instance=RequestContext(request)
                 )
                 
@@ -109,12 +117,128 @@ def inscrever(request, id):
             return redirect('/')
         else:
             raise Http404()
+
+
+
+            
+def adiciona_staff_backend(data):
+    try:
+        form_nome = data['nome']
+        form_camp_id = data['camp_id']
+        form_role = data['role']
+    except:
+        return False
+        
+    # confere se o campeonato existe
+    try:
+        campeonato = Campeonato.objects.get(id=form_camp_id)
+    except Campeonato.DoesNotExist:
+        return False
+        
+    # confere se o usuário existe mesmo
+    try:
+        usuario = Usuario.objects.get(user__username=form_nome)
+    except Usuario.DoesNotExist:
+        return False
+        
+    # cria objeto
+    trabalho_novo, created = Trabalho.objects.get_or_create(campeonato=campeonato, usuario=usuario, papel=form_role)
+    return True
+
+        
+@login_required()
+def adiciona_staff(request, id):
+    if request.method == 'GET':
+        form = InserirStaffForm(initial={'camp_id': id})
+    else:
+        form = InserirStaffForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            if adiciona_staff_backend(form_data):
+                messages.success(request, 'Campeonato criado com sucesso!')
+                return redirect('/campeonatos/' + id + '/')
+            else:
+                messages.error(request, 'Erro interno ao inserir campeonato =/. Tente mais tarde ou contate-nos sobre o erro.')
+                return redirect('/campeonatos/' + id + '/')
+        else:
+            messages.error(request, 'Parece que há algo errado com seu formulário, confira-o e tente de novo =).')
+                
+    return render(request, 'camp-add-staff.html', 
+                    {
+                        'staff_form': form,
+                    }, context_instance=RequestContext(request)
+                )
+
+            
+    
+def cria_campeonato(username, data):
+    try:
+        form_nome = data['nome']
+        form_descricao = data['descricao']
+        form_universidade = data['universidade']
+        form_inicio_inscricoes = data['inicio_inscricoes']
+        form_fim_inscricoes = data['fim_inscricoes']
+        form_inicio_partidas = data['inicio_partidas']
+        form_fim_partidas = data['fim_partidas']
+        form_vagas = data['vagas']
+    except:
+        return 'dados do form inválidos'
+
+    # Pega a universidade escolhida, pelo id
+    try:
+        uni = Universidade.objects.get(id=form_universidade)
+    except Universidade.DoesNotExist:
+        return 'universidade não existe'
+
+    # Associa o usuario ao campeonato
+    try:
+        usuario = Usuario.objects.get(user__username=username)
+    except Usuario.DoesNotExist:
+        return 'usuário não encontrado'
+        
+    # Cria o campeonato
+    camp_novo = Campeonato()
+    camp_novo.criador = usuario
+    camp_novo.nome = form_nome
+    camp_novo.universidade = uni
+    camp_novo.descricao = form_descricao
+    camp_novo.inicio_inscricoes = form_inicio_inscricoes
+    camp_novo.fim_inscricoes = form_fim_inscricoes
+    camp_novo.inicio_partidas = form_inicio_partidas
+    camp_novo.fim_partidas = form_fim_partidas
+    camp_novo.vagas = form_vagas
+    camp_novo.formato = 'RR'
+    camp_novo.save()
+    
+    return 'sucesso'
     
 @login_required()
 def criar(request):
-    return render(request, 'camp-inscricoes-abertas.html', {}, 
-                    context_instance=RequestContext(request))
-                    
+    sucesso = 0
+    if request.method == 'GET':
+        form = CriarCampeonatoForm()
+    else:
+        form = CriarCampeonatoForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            sucesso = form_data
+            sucesso = cria_campeonato(request.user.username, form_data)
+            if sucesso == 'sucesso':
+                messages.success(request, 'Campeonato criado com sucesso!')
+                return redirect('/campeonatos/todos/')
+            else:
+                messages.error(request, 'Erro interno ao inserir campeonato =/. Tente mais tarde ou contate-nos sobre o erro.')
+                return redirect('/campeonatos/todos/')
+        else:
+            messages.error(request, 'Parece que há algo errado com seu formulário, confira-o e tente de novo =).')
+            sucesso = 'form inválido'
+                
+    return render(request, 'camp-criar.html', 
+                    {
+                        'campeonato_form': form,
+                        'sucesso': sucesso,
+                    }, context_instance=RequestContext(request)
+                )
 
 
 # relacionados a partidas
@@ -137,6 +261,8 @@ def visualizar_partida(request, id):
                     }, context_instance=RequestContext(request)
                 )
                 
+
+@login_required()
 def partida_gerar_senha(request, id):
     # recupera a partida
     # verifica se o id é realmente inteiro

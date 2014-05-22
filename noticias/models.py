@@ -4,6 +4,7 @@ from usuarios.models import Usuario
 class Noticia(models.Model):
     titulo = models.CharField(max_length=40)
     autor = models.CharField(max_length=40)
+    resumo = models.CharField(max_length=255)
     conteudo = models.TextField()
     data_criacao = models.DateTimeField()
     data_editado = models.DateTimeField()
