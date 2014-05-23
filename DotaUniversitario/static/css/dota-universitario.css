@@ -17,7 +17,8 @@
 }
 
 .dota-index-img-footer {
-    width: 100%;
+    width: 359px;
+    height: 237px;
     margin-top: 40px;
 }
 
@@ -141,6 +142,19 @@ body {
     padding-top: 10px;
 }
 
+.d2u-form-group {
+}
+
+.d2u-form-group > h5{
+    color: #aaa;
+    margin-bottom: 1px;
+}
+
+.d2u-form-group > hr{
+    width: 100%;
+    margin-top: 0px;
+}
+
 #toast-container {
     top: 55px;
-} 
+}

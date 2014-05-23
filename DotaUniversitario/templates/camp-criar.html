@@ -11,23 +11,140 @@
                 <input type="hidden" name="next" value="{{ next }}" />
             {% endif %}
             
-            {% for field in campeonato_form %}
-                {% if not field.is_hidden %}
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="nome">{{ field.label }}</label>
-                        <div class="col-sm-6">
-                            {{ field }}
-                        </div>
-                        {% if field.errors %}
-                        <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
-                            {{ field.errors|first }}
-                        </div>
-                        {% endif %}
+            <div class='d2u-form-group'>
+                <h5>INFORMAÇÕES GERAIS</h5>
+                <hr/>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="nome">{{ campeonato_form.nome.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.nome }}
                     </div>
-                {% else %}
-                    {{ field }}
-                {% endif %}
-            {% endfor %}
+                    {% if campeonato_form.nome.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.nome.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="universidade">{{ campeonato_form.universidade.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.universidade }}
+                    </div>
+                    {% if campeonato_form.universidade.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.universidade.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="vagas">{{ campeonato_form.vagas.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.vagas }}
+                    </div>
+                    {% if campeonato_form.vagas.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.vagas.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="descricao">{{ campeonato_form.descricao.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.descricao }}
+                    </div>
+                    {% if campeonato_form.descricao.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.descricao.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class='d2u-form-group'>
+                <h5>INSCRIÇÕES</h5>
+                <hr />
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="inicio_inscricoes">{{ campeonato_form.inicio_inscricoes.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.inicio_inscricoes }}
+                    </div>
+                    {% if campeonato_form.inicio_inscricoes.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.inicio_inscricoes.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="fim_inscricoes">{{ campeonato_form.fim_inscricoes.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.fim_inscricoes }}
+                    </div>
+                    {% if campeonato_form.fim_inscricoes.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.fim_inscricoes.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class='d2u-form-group'>
+                <h5>PARTIDAS</h5>
+                <hr />
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="inicio_partidas">{{ campeonato_form.inicio_partidas.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.inicio_partidas }}
+                    </div>
+                    {% if campeonato_form.inicio_partidas.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.inicio_partidas.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="fim_partidas">{{ campeonato_form.fim_partidas.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.fim_partidas }}
+                    </div>
+                    {% if campeonato_form.fim_partidas.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.fim_partidas.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="hora_inicio_partidas">{{ campeonato_form.hora_inicio_partidas.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.hora_inicio_partidas }}
+                    </div>
+                    {% if campeonato_form.hora_inicio_partidas.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.hora_inicio_partidas.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="hora_fim_partidas">{{ campeonato_form.hora_fim_partidas.label }}</label>
+                    <div class="col-sm-6">
+                        {{ campeonato_form.hora_fim_partidas }}
+                    </div>
+                    {% if campeonato_form.hora_fim_partidas.errors %}
+                    <div class="col-sm-3 alert alert-danger" style="padding: 6px 15px; margin-bottom: 0px;">
+                        {{ campeonato_form.hora_fim_partidas.errors|first }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
             
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-9">
@@ -37,4 +154,18 @@
         </form>
         
     </div> <!-- end content -->
+    {% endblock %}
+    
+    {% block script_area %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.timepicker').each(function() {
+                    $(this).timepicker({
+                        defaultTime: '',
+                        hourText: 'Horas',
+                        minuteText: 'Minutos',
+                    });
+                });
+            });
+        </script>
     {% endblock %}

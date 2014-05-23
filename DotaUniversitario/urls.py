@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^campeonatos/terminados/$', campeonatos_views.terminados),
     url(r'^campeonatos/crie-o-seu/$', campeonatos_views.criar),
     url(r'^campeonatos/(\d+)/$', campeonatos_views.visualizar),
-    url(r'^campeonatos/(\d+)/add-staff/$', campeonatos_views.adiciona_staff),
+    url(r'^campeonatos/(\d+)/adicionar-staff/$', campeonatos_views.adiciona_staff),
     url(r'^campeonatos/(\d+)/inscricao/$', campeonatos_views.inscrever),
     
     # ligas

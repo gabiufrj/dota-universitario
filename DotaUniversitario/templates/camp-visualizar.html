@@ -32,7 +32,7 @@
                     <th>Staff</th>
                     <td>
                         {% if criador %}
-                        <a href="/campeonatos/{{ campeonato.id }}/add-staff/">Adicionar</a>
+                        <a href="/campeonatos/{{ campeonato.id }}/adicionar-staff/">Adicionar</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -109,6 +109,11 @@
         <div class="page-header">
             <h3>Partidas</h3>
         </div>
+        {% if criador %}
+            <div class='d2u-nova-partida'>
+                <a href="/campeonatos/{{ campeonato.id }}/cadastrar-partida/">Cadastrar partida</a>
+            </div>
+        {% endif %}
         {% if partidas %}
         <h4>Últimas partidas</h4>
             <div style="width:80%">

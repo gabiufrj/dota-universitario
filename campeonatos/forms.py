@@ -24,11 +24,14 @@ class CriarCampeonatoForm(forms.Form):
     
     descricao = forms.CharField(label='Descrição', widget=forms.Textarea(attrs={'rows': 6, 'class': 'form-control', 'style': 'resize: vertical;', 'placeholder': 'Digite a descrição do campeonato...'}))
     
-    inicio_inscricoes = forms.DateField(label='Início das inscrições', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
-    fim_inscricoes = forms.DateField(label='Término das inscrições', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
+    inicio_inscricoes = forms.DateField(label='Início', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
+    fim_inscricoes = forms.DateField(label='Término', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
     
-    inicio_partidas = forms.DateField(label='Início das partidas', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
-    fim_partidas = forms.DateField(label='Término das partidas', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
+    inicio_partidas = forms.DateField(label='Início', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
+    fim_partidas = forms.DateField(label='Término', widget=forms.TextInput(attrs={'class':'form-control datepicker'}))
+    
+    hora_inicio_partidas = forms.CharField(label='Horário de início', widget=forms.TextInput(attrs={'class': 'form-control timepicker'}))
+    hora_fim_partidas = forms.CharField(label='Horário de término', widget=forms.TextInput(attrs={'class': 'form-control timepicker'}))
 
 
     def clean(self):
